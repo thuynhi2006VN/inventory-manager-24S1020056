@@ -28,7 +28,20 @@ def view_inventory(products):
     for product in products:
         print(f"Mã: {product['id']}, Tên: {product['name']}, Số lượng: {product['quantity']}, Giá: {product['price']}")
 
-def check_low_stock():
-    # Duyệt list, kiểm tra nếu qty < 5 thì in ra cảnh báo
-    pass
+def check_low_stock(products, threshold=5):
+    """
+    Duyệt danh sách products và in ra những sản phẩm có số lượng dưới threshold.
+    products: list các dict hoặc object sản phẩm
+    threshold: mức cảnh báo (mặc định 5)
+    """
+    low_stock_items = [p for p in products if p['quantity'] < threshold]
+    
+    if not low_stock_items:
+        print("Hiện tại không có sản phẩm nào sắp hết hàng.")
+        return
+
+    print("Các sản phẩm sắp hết hàng:")
+    for product in low_stock_items:
+        print(f"Mã: {product['id']}, Tên: {product['name']}, Số lượng: {product['quantity']}")
+
 
